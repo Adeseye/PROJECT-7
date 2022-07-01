@@ -62,6 +62,11 @@ Next step is to Mount the logical volumes and update block ID.
 
 ![alt text](./Images/step5%20mount%20the%20logical%20disk%20%26%20update%20block%20ID.JPG)
 
+
+Edit etc fstab via Vim
+
+![alt text](./Images/step%20edit%20etcfstab%20via%20vi.JPG)
+
 Now run command to confirm configuration was successful with no errors using <code>sudo mount -a></code>
 
 ![alt text](./Images/step%205%20b%20run%20command%20to%20confim%20configuration%20was%20successful%20with%20no%20errors.JPG)
@@ -93,6 +98,60 @@ Then to enable and start nsf server service run the following commands:
 Next stage is to export the mounts for webservers subnet cidr to connect as a clients, to check subnet - cidr open EC2 instance details in AWS Web console and locate 'Networking' tab and open the Subnet like below.
 
 ![alt text](./Images/Capture2.JPG)
+
+Next step is to ensure I can setup permission that allows web server to read,write and execute on NFS by running the commands
+
+<code>
+sudo chown -R nobody: /mnt/apps
+
+sudo chown -R nobody: /mnt/logs
+
+sudo chown -R nobody: /mnt/opt
+
+sudo chmod -R 777 /mnt/apps
+
+sudo chmod -R 777 /mnt/logs
+
+sudo chmod -R 777 /mnt/opt
+</code>
+
+![alt text](./Images/step%209%20setup%20permissions.JPG)
+
+Then restart the server service
+
+<code>sudo systemctl restart nfs-server.service</code>
+
+Configure access to NFS for clients within the same subnet CIDR – 172.31.32.0/20 by running the command 
+
+<code>sudo vi /etc/export</code>
+
+![alt text](./Images/step%2010%20sudo%20vi%20etc%20exports%20configure%20access%20to%20nsf%20for%20clients.JPG)
+
+Save it by running <code>Esc + :wq!</code>
+
+Next run <code>sudo exportfs -arv</code>
+
+![alt text](./Images/step%2011%20sudo%20exportfs%20-arv.JPG)
+
+Check which port is used by NFS and open it using Security Groups (add new Inbound Rule) using 
+
+<code>rpcinfo -p | grep nfs</code>
+
+![alt text](./Images/step%2012%20run%20rpcinfo%20-p%20grep%20nfs.JPG)
+
+In order for NFS server to be accessible from your client, you must also open following ports: TCP 111, UDP 111, UDP 2049
+
+![alt text](./Images/Capture3.JPG)
+
+
+
+
+
+
+
+
+
+
 
 
 
