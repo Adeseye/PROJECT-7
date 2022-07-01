@@ -38,6 +38,47 @@ Mount lv-apps on /mnt/apps – To be used by webservers
 
 Mount lv-logs on /mnt/logs – To be used by webserver logs
 
-Mount lv-opt on /mnt/opt – To be used by Jenkins server in Project 8
+Mount lv-opt on /mnt/opt – To be used by Jenkins server in next Project< Project 8>
+
+First create the mount points
+
+![alt text](./Images/step3%20create%20mount%20points.JPG)
+
+Next step is to /mnt directory for the logical volumes
+
+![alt text](./Images/step3%20b%20make%20mnt%20directory%20for%20lv%20apps%20etc.JPG)
+
+
+
+I will need to create a physical volumes by running <code>sudo pvcreate /dev/xvdb1 /dev/xvdc1></code>
+
+![alt text](./Images/step%203%20create%20physical%20volume.JPG)
+
+Next step is to format the logical volumes
+
+![alt text](./Images/step4%20format%20the%20logical%20volumes.JPG)
+
+Next step is to Mount the logical volumes and update block ID. 
+
+![alt text](./Images/step5%20mount%20the%20logical%20disk%20%26%20update%20block%20ID.JPG)
+
+Now run command to confirm configuration was successful with no errors using <code>sudo mount -a></code>
+
+![alt text](./Images/step%205%20b%20run%20command%20to%20confim%20configuration%20was%20successful%20with%20no%20errors.JPG)
+
+If it returns with no error message then it was successful , run <code>df -h</code>
+
+![alt text](./Images/step%205c%20check%20the%20drives%20were%20mounted%20correctly.JPG)
+
+Next is to install NSF Server, configure it to start on reboot and confirm it runs.
+
+
+
+
+
+
+
+
+
 
 
