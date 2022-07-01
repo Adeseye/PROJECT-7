@@ -33,8 +33,11 @@ Next is to install LVM2 by executing this command <code>sudo yum install lvm2</c
 ![alt text](./Images/step2%20install%20lvm2.JPG)
 
 Next is to create mount points on /mnt directory for the logical volumes as follow:
+
 Mount lv-apps on /mnt/apps – To be used by webservers
+
 Mount lv-logs on /mnt/logs – To be used by webserver logs
+
 Mount lv-opt on /mnt/opt – To be used by Jenkins server in Project 8
 
 
