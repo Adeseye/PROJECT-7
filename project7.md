@@ -72,6 +72,27 @@ If it returns with no error message then it was successful , run <code>df -h</co
 
 Next is to install NSF Server, configure it to start on reboot and confirm it runs.
 
+First update on the NSF Server by running <code>sudo yum update</code>
+
+![alt text](./Images/step%206%20install%20NSF%20server%20yum%20update.JPG)
+
+Next is to install NSF Server by running the command <code>sudo yum install nfs-utils -y</code>
+
+![alt text](./Images/step%207%20install%20nfs.JPG)
+
+Then to enable and start nsf server service run the following commands:
+
+<code>sudo systemctl start nfs-server.service</code>
+
+<code>sudo systemctl enable nfs-server.service</code>
+
+<code>sudo systemctl status nfs-server.service</code>
+
+![alt text](./Images/step%208%20install%20all%20other%20nfs%20commands.JPG)
+
+Next stage is to export the mounts for webservers subnet cidr to connect as a clients, to check subnet - cidr open EC2 instance details in AWS Web console and locate 'Networking' tab and open the Subnet like below.
+
+![alt text](./Images/Capture2.JPG)
 
 
 
